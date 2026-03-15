@@ -1,0 +1,24 @@
+# Node
+node_modules/
+npm-debug.log*
+frontend/.npm-cache/
+
+# Python
+__pycache__/
+.pytest_cache/
+.venv/
+env/
+
+# Django
+*.sqlite3
+*.pyc
+
+# Env
+.env
+
+# VSCode/IDE
+.vscode/
+.idea/
+
+# Docker
+postgres_data/

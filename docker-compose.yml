@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - DATABASE_URL=postgres://cosmos:cosmos@db:5432/cosmos_db
+      - NASA_API_KEY=${NASA_API_KEY}
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DEBUG=True
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=cosmos
+      - POSTGRES_PASSWORD=cosmos
+      - POSTGRES_DB=cosmos_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
