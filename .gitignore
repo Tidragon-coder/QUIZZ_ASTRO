@@ -22,3 +22,6 @@ env/
 
 # Docker
 postgres_data/
+
+# Keep Django migrations under version control (only ignore their caches)
+backend/**/migrations/__pycache__/
